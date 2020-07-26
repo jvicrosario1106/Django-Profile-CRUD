@@ -1,0 +1,35 @@
+{% extends 'profilerapp/base.html' %}
+
+{% block title %} Home | Users {% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Position</th>
+        <th scope="col" class="text-center">Images</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for users in user %}
+      <tr>
+        <td>{{users.f_name}}</td>
+        <td>{{users.l_name}}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.position}}</td>
+        <td class="text-center"><a href="{% url 'details' users.id %}"><img src="{{users.images.url}}" alt="" width="50" class="rounded-circle"></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
