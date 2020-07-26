@@ -28,6 +28,7 @@ def addprocess(request):
         user_pic = "background21.png"
 
     try:
+        users  = Users.objects.get(email=email)
         return HttpResponse("Unique Email Only")
 
     except ObjectDoesNotExist:
@@ -60,9 +61,9 @@ def update(request, pk):
 
 
 def updateprocess(request,pk):
-    images = request.FILES.get("images")
-
+    
     try:
+        images = request.FILES.get("images")
         fname = request.POST.get("fname")
         lname = request.POST.get("lname")
         email = request.POST.get("email")
@@ -70,7 +71,7 @@ def updateprocess(request,pk):
 
     except (KeyError, Users.DoesNotExist):
         return HttpResponse("Failed To Update")
-
+    
     else:
         user = Users.objects.get(id=pk)
         user.f_name = fname
